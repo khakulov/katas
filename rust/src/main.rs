@@ -57,5 +57,18 @@ fn for_loop() {
     for x in v {
         println!("{}", x);
     }
-    assert_eq!(0, 1);
+    assert_eq!(1, 1);
+}
+
+
+#[test]
+fn for_loop_iterate_twice() {
+    let v = vec!["1", "2", "3"];
+    for x in &v {
+        println!("{}", x);
+    }
+    for x in &v {
+        println!("{}", x);
+    }
+    assert_eq!(1, 1);
 }
