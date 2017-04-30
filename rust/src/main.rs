@@ -8,11 +8,12 @@ fn main() {
 // }
 
 fn calculate(vec: Vec<i32>) -> usize {
+    if vec.len() == 0 {
+        return 0;
+    }
+
     let current_sum = vec.len() * 2;
     
-    if vec.len() < 4 {
-        return current_sum;
-    }
     
     // for (i = 0; i < vec.len(); i++) {
     //     let j: i32 = findBestWeekWindow(A, i);
@@ -26,28 +27,62 @@ fn calculate(vec: Vec<i32>) -> usize {
 }
 
 #[test]
-fn return_0_for_empty_list() {
-    assert_eq!(calculate(vec![]), 0);
+fn return_0_if_no_days_given() {
+  assert_eq!(calculate(vec![]), 0);
 }
 
 #[test]
-fn return_2_for_list_with_one_element() {
-    assert_eq!(calculate(vec![1]), 2);
+fn return_2_for_one_day() {
+  assert_eq!(calculate(vec![1]), 2);
 }
 
 #[test]
-fn return_6_for_list_with_three_element() {
-    assert_eq!(calculate(vec![1,2,3]), 6);
+fn return_6_for_three_days() {
+  assert_eq!(calculate(vec![1,2,3]), 6);
 }
 
 #[test]
-fn return_7_for_list_with_days_which_fit_into_one_week() {
-    assert_eq!(calculate(vec![1,2,3,4]), 7);
+fn return_7_for_4_days_in_row() {
+  assert_eq!(calculate(vec![1,2,3,4]), 7);
 }
 
 #[test]
-fn return_9_for_list_with_days_which_fit_into_one_week_and_extra_day() {
-    assert_eq!(calculate(vec![1,2,5,7]), 7);
+fn return_7_for_all_days_in_one_week() {
+  assert_eq!(calculate(vec![1,2,3,4]), 7);
+  assert_eq!(calculate(vec![1,2,3,4,5]), 7);
+  assert_eq!(calculate(vec![1,2,3,4,5,6]), 7);
+  assert_eq!(calculate(vec![1,2,3,4,5,6,7]), 7);
+  assert_eq!(calculate(vec![2,3,4,5,6,7]), 7);
+  assert_eq!(calculate(vec![2,3,4,6,7]), 7);
+  assert_eq!(calculate(vec![1,3,5,7]), 7);
+}
+
+#[test]
+fn return_9_for_1_week_and_1_day() {
+  assert_eq!(calculate(vec![1,2,3,4,8]), 9);
+  assert_eq!(calculate(vec![1,2,3,4,5,8]), 9);
+  assert_eq!(calculate(vec![1,2,3,4,5,6,8]), 9);
+  assert_eq!(calculate(vec![1,2,3,4,5,6,7,8]), 9);
+  assert_eq!(calculate(vec![1,2,3,4,5,6,8]), 9);
+  assert_eq!(calculate(vec![1,2,3,4,6,8]), 9);
+  assert_eq!(calculate(vec![1,2,3,5,8]), 9);
+}
+
+#[test]
+fn return_7_and_extra_for_days_in_one_week_and_extra_days() {
+    assert_eq!(calculate(vec![1,2,3,4,8,9]), 11);
+    assert_eq!(calculate(vec![1,2,3,4,8,9,10]), 13);
+    assert_eq!(calculate(vec![1,2,3,4,8,9,10,11]), 14);
+}
+
+#[test]
+fn return_18_for_2_weeks_and_2_days() {
+    assert_eq!(calculate(vec![1,5,6,7,8,9,10,11,12,16,17,18,19,20]), 18);
+}
+
+#[test]
+fn return_25_for_one_month() {
+    assert_eq!(calculate(vec![1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]), 25);
 }
 
 
