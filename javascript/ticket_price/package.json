@@ -1,0 +1,14 @@
+{
+  "name": "@khakulov/ticket_price",
+  "version": "1.0.0",
+  "description": "Ticket Price Calculation",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Azim Khakulov <azim@khakulov.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^19.0.2"
+  }
+}
